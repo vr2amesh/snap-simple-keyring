@@ -6,6 +6,7 @@ import type {
   OnKeyringRequestHandler,
   OnRpcRequestHandler,
 } from '@metamask/snaps-types';
+import { Environment, initClient } from '@usecapsule/core-sdk';
 
 import { SimpleKeyring } from './keyring';
 import { logger } from './logger';
@@ -20,6 +21,11 @@ let keyring: SimpleKeyring;
 async function getKeyring(): Promise<SimpleKeyring> {
   if (!keyring) {
     const state = await getState();
+    // const capsule = initClient(
+    //   Environment.SANDBOX,
+    //   '2f938ac0c48ef356050a79bd66042a23',
+    // );
+
     if (!keyring) {
       keyring = new SimpleKeyring(state);
     }
